@@ -24,13 +24,6 @@ with app.app_context():
 def index():
     return render_template('login.html')
 
-# Stocks
-class Stock(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    symbol = db.Column(db.String(10), nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    date = db.Column(db.Date, nullable=False)
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -67,7 +60,6 @@ def dashboard():
         return render_template('welcome.html', username=session['username'])
     else:
         return redirect(url_for('index'))
-
 
 @app.route('/logout')
 def logout():
