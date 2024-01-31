@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StockMarket</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_new.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1> StockMarket </h1>
+        <button class="navbtn" style="background-color: black; color: white;" id="dark-mode-toggle"> Enable Dark Mode </button>
+        <a href="/dashboard" class="navbtn btn-about">  Back to Dashboard </a>
+        <a href="/" class="navbtn btn-logout">Logout</a>
+    </div>
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        const navbar = document.querySelector('.navbar');
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            navbar.classList.toggle('dark-mode-navbar');
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerText = 'Enable Light Mode';
+                darkModeToggle.style.backgroundColor = 'white';
+                darkModeToggle.style.color = 'black';
+            } else {
+                darkModeToggle.innerText = 'Enable Dark Mode';
+                darkModeToggle.style.backgroundColor = 'black';
+                darkModeToggle.style.color = 'white';
+            }
+        });
+    </script>
+    <div class="stocks-area">
+        <div style="font-size: 3.5em;">NIFTY STOCKS</div>
+        <hr style="opacity: 0.25;"/>
+        <input list="tables" id="selectTable" placeholder="Select stocks">
+        <datalist id="tables">
+            <option value='Adani Enterprises Ltd'>
+                <option value='Adani Ports and Special Economic Zone Ld'>
+                <option value='Apollo Hospitals Enterprise Limited'>
+                <option value='Asian Paints Ltd'>
+                <option value='Axis Bank Ltd'>
+                <option value='Bajaj Auto Ltd'>
+                <option value='Bajaj Finance Ltd'>
+                <option value='Bajaj Finserv Ltd'>
+                <option value='Bharat Petroleum Corporation Ltd'>
+                <option value='Bharti Airtel Ltd'>
+                <option value='Britannia Industries Ltd'>
+                <option value='Cipla Ltd'>
+                <option value='Coal India Ltd'>
+                <option value="Divi's Laboratories Ltd">
+                <option value="Dr Reddy's Laboratories Ltd">
+                <option value='Eicher Motors Ltd'>
+                <option value='Grasim Industries Ltd'>
+                <option value='HCL Technologies Ltd'>
+                <option value='HDFC Bank Ltd'>
+                <option value='HDFC Life Insurance Company Ltd'>
+                <option value='Hero Motocorp Ltd'>
+                <option value='Hindalco Industries Ltd'>
+                <option value='Hindustan Unilever Ltd'>
+                <option value='ICICI Bank Ltd'>
+                <option value='ITC Ltd'>
+                <option value='Indusind Bank Ltd'>
+                <option value='Infosys Ltd'>
+                <option value='JSW Steel Limited'>
+                <option value='Kotak Mahindra Bank Ltd Fully Paid Ord. Shrs'>
+                <option value='LTIMindtree Ltd'>
+                <option value='Larsen and Toubro Ltd'>
+                <option value='Maruti Suzuki India Ltd'>
+                <option value='NTPC Ltd'>
+                <option value='Nestle India Limited'>
+                <option value='Oil and Natural Gas Corporation Ltd'>
+                <option value='Power Grid Corporation of India Ltd'>
+                <option value='Reliance Industries Ltd'>
+                <option value='Sbi Life Insurance Company Ltd'>
+                <option value='State Bank of India'>
+                <option value='Sun Pharmaceutical Industries Ltd'>
+                <option value='Tata Consultancy Services Ltd'>
+                <option value='Tata Consumer Products Ltd'>
+                <option value='Tata Motors Ltd Fully Paid Ord. Shrs'>
+                <option value='Tata Steel Ltd'>
+                <option value='Tech Mahindra Ltd'>
+                <option value='Titan Company Ltd'>
+                <option value='UPL Ltd'>
+                <option value='UltraTech Cement Ltd'>
+                <option value='Wipro Ltd'>
+                
+        </datalist>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Adani Enterprises Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)" >
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Adani Enterprises Ltd</p>
+                <img src="{{ url_for('static', filename='adanient.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Adani Enterprises Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Adani Ports and Special Economic Zone Ld" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Adani Ports and Special Economic Zone Ld</p>
+                <img src="{{ url_for('static', filename='adanisez.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Adani Ports and Special Economic Zone Ld"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Apollo Hospitals Enterprise Limited" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Apollo Hospitals Enterprise Limited</p>
+                <img src="{{ url_for('static', filename='apollo.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Apollo Hospitals Enterprise Limited"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Asian Paints Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Asian Paints Ltd</p>
+                <img src="{{ url_for('static', filename='asian.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Asian Paints Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Axis Bank Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Axis Bank Ltd</p>
+                <img src="{{ url_for('static', filename='axis.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Axis Bank Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Bajaj Auto Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Bajaj Auto Ltd</p>
+                <img src="{{ url_for('static', filename='bajaj.webp') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Bajaj Auto Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Bajaj Finance Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Bajaj Finance Ltd</p>
+                <img src="{{ url_for('static', filename='bajajfinance.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Bajaj Finance Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Bajaj Finserv Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Bajaj Finserv Ltd</p>
+                <img src="{{ url_for('static', filename='bajajfin.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Bajaj Finserv Ltd"></div>
+        </a>    
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Bharat Petroleum Corporation Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Bharat Petroleum Corporation Ltd</p>
+                <img src="{{ url_for('static', filename='bol.jpg') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Bharat Petroleum Corporation Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Bharti Airtel Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Bharti Airtel Ltd</p>
+                <img src="{{ url_for('static', filename='airtel.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Bharti Airtel Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Britannia Industries Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Britannia Industries Ltd</p>
+                <img src="{{ url_for('static', filename='britannia.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Britannia Industries Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Cipla Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Cipla Ltd</p>
+                <img src="{{ url_for('static', filename='cipla.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Cipla Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Coal India Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Coal India Ltd</p>
+                <img src="{{ url_for('static', filename='coal_india.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Coal India Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Divi's Laboratories Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Divi's Laboratories Ltd</p>
+                <img src="{{ url_for('static', filename='divis.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Divi's Laboratories Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Dr Reddy's Laboratories Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Dr Reddy's Laboratories Ltd</p>
+                <img src="{{ url_for('static', filename='reddy.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Dr Reddy's Laboratories Ltd"></div>
+        </a>
+        <br/>
+
+        <br/>
+        <a href="/stock_particular?stock_name=Eicher Motors Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Eicher Motors Ltd</p>
+                <img src="{{ url_for('static', filename='eicher.webp') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Eicher Motors Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Grasim Industries Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Grasim Industries Ltd</p>
+                <img src="{{ url_for('static', filename='grasim.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Grasim Industries Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=HCL Technologies Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">HCL Technologies Ltd</p>
+                <img src="{{ url_for('static', filename='hcl.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="HCL Technologies Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=HDFC Bank Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">HDFC Bank Ltd</p>
+                <img src="{{ url_for('static', filename='hdfc.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="HDFC Bank Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=HDFC Life Insurance Company Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">HDFC Life Insurance Company Ltd</p>
+                <img src="{{ url_for('static', filename='hdfclife.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="HDFC Life Insurance Company Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Hero MotoCorp Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Hero MotoCorp Ltd</p>
+                <img src="{{ url_for('static', filename='hero.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Hero Motocorp Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Hindalco Industries Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Hindalco Industries Ltd</p>
+                <img src="{{ url_for('static', filename='hindalco.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Hindalco Industries Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Hindustan Unilever Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Hindustan Unilever Ltd</p>
+                <img src="{{ url_for('static', filename='unilever.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Hindustan Unilever Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=ICICI Bank Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">ICICI Bank Ltd</p>
+                <img src="{{ url_for('static', filename='icici.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="ICICI Bank Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=ITC Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">ITC Ltd</p>
+                <img src="{{ url_for('static', filename='itc.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="ITC Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Indusind Bank Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Indusind Bank Ltd</p>
+                <img src="{{ url_for('static', filename='indusind.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Indusind Bank Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Infosys Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Infosys Ltd</p>
+                <img src="{{ url_for('static', filename='infosys.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Infosys Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=JSW Steel Limited" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">JSW Steel Limited</p>
+                <img src="{{ url_for('static', filename='jsw.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="JSW Steel Limited"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Kotak Mahindra Bank Ltd Fully Paid Ord. Shrs" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Kotal Mahindra Bank Ltd Fully Paid Ord. Shrs</p>
+                <img src="{{ url_for('static', filename='kotak.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Kotak Mahindra Bank Ltd Fully Paid Ord. Shrs"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=LTIMindtree Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">LTIMindtree</p>
+                <img src="{{ url_for('static', filename='ltimind.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="LTIMindtree Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Larsen and Toubro Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Larsen and Tourbo Ltd</p>
+                <img src="{{ url_for('static', filename='lt.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Larsen and Toubro Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Maruti Suzuki India Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Maruti Suzuki India Ltd</p>
+                <img src="{{ url_for('static', filename='maruti.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Maruti Suzuki India Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=NTPC Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">NTPC Ltd</p>
+                <img src="{{ url_for('static', filename='ntpc.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="NTPC Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Nestle India Limited" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Nestle India Limited</p>
+                <img src="{{ url_for('static', filename='nestle.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Nestle India Limited"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Oil and Natural Gas Corporation Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Oil and Natural Gas Corporation Ltd</p>
+                <img src="{{ url_for('static', filename='ongc.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Oil and Natural Gas Corporation Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Power Grid Corporation of India Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Power Grid Corporation of India Ltd</p>
+                <img src="{{ url_for('static', filename='powergrid.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Power Grid Corporation of India Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Reliance Industries Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Reliance Industries Ltd</p>
+                <img src="{{ url_for('static', filename='reliance.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Reliance Industries Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Sbi Life Insurance Company Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Sbi Life Insurance Company Ltd</p>
+                <img src="{{ url_for('static', filename='sbin.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Sbi Life Insurance Company Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=State Bank of India" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">State Bank of India</p>
+                <img src="{{ url_for('static', filename='sbi.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="State Bank of India"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Sun Pharmaceutical Industries Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Sun Pharmaceutical Industries Ltd</p>
+                <img src="{{ url_for('static', filename='sun.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Sun Pharmaceutical Industries Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Tata Consultancy Services Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Tata Consultancy Services Ltd</p>
+                <img src="{{ url_for('static', filename='tcs.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Tata Consultancy Services Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Tata Consumer Products Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Tata Consumer Products Ltd</p>
+                <img src="{{ url_for('static', filename='tataconsumer.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Tata Consumer Products Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Tata Motors Ltd Fully Paid Ord. Shrs" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Tata Motors Ltd Fully Paid Ord. Shrs</p>
+                <img src="{{ url_for('static', filename='tatamotors.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Tata Motors Ltd Fully Paid Ord. Shrs"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Tata Steel Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Tata Steel Ltd</p>
+                <img src="{{ url_for('static', filename='tatasteel.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Tata Steel Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Tech Mahindra Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Tech Mahindra Ltd</p>
+                <img src="{{ url_for('static', filename='techmahindra.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Tech Mahindra Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Titan Company Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Titan Company Ltd</p>
+                <img src="{{ url_for('static', filename='titan.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Titan Company Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=UPL Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">UPL Ltd</p>
+                <img src="{{ url_for('static', filename='upl.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="UPL Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=UltraTech Cement Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">UltraTech Cement Ltd</p>
+                <img src="{{ url_for('static', filename='ultratech.png') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="UltraTech Cement Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+        <a href="/stock_particular?stock_name=Wipro Ltd" class="navbtn outline-btn" style="text-align: left; font-size: large; width:600px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Current Price : {{price}}; Compare to prev. close : {{prev}} ({{percentage_change}}%)">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana;">Wipra Ltd</p>
+                <img src="{{ url_for('static', filename='wipro.svg') }}" style="max-width: 70px; max-height: 50px;" alt="img"/>
+            </div>
+            <div id="Wipro Ltd"></div>
+        </a>
+        <br/>
+        <br/>
+    </div>
+    <script>
+        // Get the input element
+        var inputElement = document.getElementById("selectTable");
+
+        // // Add event listener for 'input' event (user clicks on an option)
+        // inputElement.addEventListener("input", function() {
+        //     redirectToSelectedStock();
+        // });
+
+        // Add event listener for 'keydown' event (user presses Enter key)
+        inputElement.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                redirectToSelectedStock();
+            }
+        });
+
+        function redirectToSelectedStock() {
+            var selectedStock = document.getElementById("selectTable").value;
+            var encodedStockName = encodeURIComponent(selectedStock);
+            var redirectTo = "/stock_particular?stock_name=" + encodedStockName;
+            window.location.href = redirectTo;
+        }
+    </script>
+    <script>
+        const space = " ";
+        async function updateData() {
+            fetch('/update_data')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    for (var company_name in data){
+                        var elem = document.getElementById(company_name);
+                        var value = data[company_name][2];
+                        var color = value > 0 ? 'green' : 'red';
+                        var triangleSpan = document.createElement('span');
+                        triangleSpan.innerHTML = value > 0 ? '&nbsp;&#9650;':'&nbsp;&#9660;';
+                        triangleSpan.style.color = color;
+                        elem.innerHTML = "₹"+data[company_name][0] + space + '<span style="color: ' + color + ';">' + value +"%" + '</span>';
+                        elem.appendChild(triangleSpan);
+                        
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating data:', error);
+                })
+        }
+
+        // Update data every 1 seconds (adjust the interval as needed)
+        setInterval(updateData, 1000);
+        updateData();
+    </script>
+    
+</body>
+</html>

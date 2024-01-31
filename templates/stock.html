@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StockMarket</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_new.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1> StockMarket </h1>
+        <button class="navbtn" style="background-color: black; color: white;" id="dark-mode-toggle"> Enable Dark Mode </button>
+        <a href="#" class="navbtn btn-about"> Explore Stocks </a>
+        <a href="/" class="navbtn btn-logout">Logout</a>
+    </div>
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        const navbar = document.querySelector('.navbar');
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            navbar.classList.toggle('dark-mode-navbar');
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerText = 'Enable Light Mode';
+                darkModeToggle.style.backgroundColor = 'white';
+                darkModeToggle.style.color = 'black';
+            } else {
+                darkModeToggle.innerText = 'Enable Dark Mode';
+                darkModeToggle.style.backgroundColor = 'black';
+                darkModeToggle.style.color = 'white';
+            }
+        });
+    </script>
+    <div class="stocks-area">
+        <h1 style="font-size: 2em;">
+            NIFTY_50
+            <hr style="opacity: 0.25;"/>
+        </h1>
+        <p style="color: grey; font-size: large;"><span id="remaining-time"></p>
+        <h3 style="font-size: 2em;">NIFTY 50</h3>
+        <div> <span style="color: grey;font-size: 1.75em;">₹ {{price}}</span>
+        <div id="entire" style="background-color: rgb(224, 240, 219); display: inline-block; padding: 10px; border-radius: 5px; margin-left: 20px; margin-bottom: 10px;">
+            <span id="price" style="font-size: 1em; color: red;"> <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path id='arrow-path' d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                </svg> {{percentage_change}}%</span>
+        </div>
+        <span id="price-change" style="display: inline-block; padding: 10px; border-radius: 5px; background-color:red; font-size: 1em; color: white;"> {{prev}} Today</span>
+        </div>
+        <p style="font-size: 0.5em; color: grey;">Current price graph adapted from Google Finance</p>
+        <div>{{svg | safe}}</div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div style="font-size: 1.5rem; font-weight: 800;">
+            <p data-bs-toggle="tooltip" data-bs-placement="above" title="Performance">Performance <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+            </svg>
+            </p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevValue = parseFloat("{{prev}}");
+            const arrowIcon = document.getElementById('arrow-icon');
+            const arrowPath = document.getElementById('arrow-path');
+            const prices = document.getElementById('price');
+            const bck = document.getElementById('entire');
+            const chng = document.getElementById('price-change');
+    
+            // Check the sign of prevValue
+            if (prevValue > 0) {
+                // Positive change, set arrow icon to up
+                arrowIcon.classList.add('bi-caret-up-fill');
+                arrowIcon.classList.remove('bi-caret-down-fill');
+                arrowIcon.style.fill = "green";
+                prices.style.color = "green";
+                chng.style.backgroundColor = "rgb(8, 117, 15)";
+                entire.style.backgroundColor = "rgb(224, 240, 219)";
+                arrowPath.setAttribute('d', 'M7.247 4.86 2.451 10.342C1.885 10.987 2.345 12 3.204 12h9.592a1 1 0 0 1 .753-1.659l-4.796-5.48a1 1 0 0 1-1.506 0z');
+            } else if (prevValue < 0) {
+                // Negative change, set arrow icon to down
+                arrowIcon.classList.add('bi-caret-down-fill');
+                arrowIcon.classList.remove('bi-caret-up-fill');
+                entire.style.backgroundColor = "rgb(242, 233, 233)";
+                arrowIcon.style.fill = "red";
+                prices.style.color = "red";
+                chng.style.backgroundColor = "rgb(178, 8, 8)";
+                arrowPath.setAttribute('d', 'M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z');
+            } else {
+                // No change, hide the arrow icon
+                arrowIcon.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        function updateRemainingTime() {
+            const remainingTimeElement = document.getElementById('remaining-time');
+            const currentTime = new Date();
+            const targetTime = new Date(currentTime);
+            targetTime.setHours(15, 30, 0, 0); // 3:30 PM
+            const textChange = `MARKET CLOSES AT 3.30 PM`;
+            const textNoChange = `MARKET OPENS AT 9.15 AM`;
+    
+            if (currentTime > targetTime) {
+                targetTime.setDate(targetTime.getDate() + 1);
+            }
+            if (currentTime.getHours() < 9 || (currentTime.getHours() === 9 && currentTime.getMinutes() < 15 || currentTime.getHours() > 15 || currentTime.getHours()===15 && currentTime.getMinutes() > 30)) {
+                remainingTimeElement.textContent = textNoChange;
+            } else {
+                remainingTimeElement.textContent = textChange;
+            }
+        }
+        setInterval(updateRemainingTime, 1000);
+        updateRemainingTime();
+    </script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+</html>
