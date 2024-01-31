@@ -36,55 +36,54 @@
         <input list="tables" id="selectTable" placeholder="Select stocks">
         <datalist id="tables">
             <option value='Adani Enterprises Ltd'>
-                <option value='Adani Ports and Special Economic Zone Ld'>
-                <option value='Apollo Hospitals Enterprise Limited'>
-                <option value='Asian Paints Ltd'>
-                <option value='Axis Bank Ltd'>
-                <option value='Bajaj Auto Ltd'>
-                <option value='Bajaj Finance Ltd'>
-                <option value='Bajaj Finserv Ltd'>
-                <option value='Bharat Petroleum Corporation Ltd'>
-                <option value='Bharti Airtel Ltd'>
-                <option value='Britannia Industries Ltd'>
-                <option value='Cipla Ltd'>
-                <option value='Coal India Ltd'>
-                <option value="Divi's Laboratories Ltd">
-                <option value="Dr Reddy's Laboratories Ltd">
-                <option value='Eicher Motors Ltd'>
-                <option value='Grasim Industries Ltd'>
-                <option value='HCL Technologies Ltd'>
-                <option value='HDFC Bank Ltd'>
-                <option value='HDFC Life Insurance Company Ltd'>
-                <option value='Hero Motocorp Ltd'>
-                <option value='Hindalco Industries Ltd'>
-                <option value='Hindustan Unilever Ltd'>
-                <option value='ICICI Bank Ltd'>
-                <option value='ITC Ltd'>
-                <option value='Indusind Bank Ltd'>
-                <option value='Infosys Ltd'>
-                <option value='JSW Steel Limited'>
-                <option value='Kotak Mahindra Bank Ltd Fully Paid Ord. Shrs'>
-                <option value='LTIMindtree Ltd'>
-                <option value='Larsen and Toubro Ltd'>
-                <option value='Maruti Suzuki India Ltd'>
-                <option value='NTPC Ltd'>
-                <option value='Nestle India Limited'>
-                <option value='Oil and Natural Gas Corporation Ltd'>
-                <option value='Power Grid Corporation of India Ltd'>
-                <option value='Reliance Industries Ltd'>
-                <option value='Sbi Life Insurance Company Ltd'>
-                <option value='State Bank of India'>
-                <option value='Sun Pharmaceutical Industries Ltd'>
-                <option value='Tata Consultancy Services Ltd'>
-                <option value='Tata Consumer Products Ltd'>
-                <option value='Tata Motors Ltd Fully Paid Ord. Shrs'>
-                <option value='Tata Steel Ltd'>
-                <option value='Tech Mahindra Ltd'>
-                <option value='Titan Company Ltd'>
-                <option value='UPL Ltd'>
-                <option value='UltraTech Cement Ltd'>
-                <option value='Wipro Ltd'>
-                
+            <option value='Adani Ports and Special Economic Zone Ld'>
+            <option value='Apollo Hospitals Enterprise Limited'>
+            <option value='Asian Paints Ltd'>
+            <option value='Axis Bank Ltd'>
+            <option value='Bajaj Auto Ltd'>
+            <option value='Bajaj Finance Ltd'>
+            <option value='Bajaj Finserv Ltd'>
+            <option value='Bharat Petroleum Corporation Ltd'>
+            <option value='Bharti Airtel Ltd'>
+            <option value='Britannia Industries Ltd'>
+            <option value='Cipla Ltd'>
+            <option value='Coal India Ltd'>
+            <option value="Divi's Laboratories Ltd">
+            <option value="Dr Reddy's Laboratories Ltd">
+            <option value='Eicher Motors Ltd'>
+            <option value='Grasim Industries Ltd'>
+            <option value='HCL Technologies Ltd'>
+            <option value='HDFC Bank Ltd'>
+            <option value='HDFC Life Insurance Company Ltd'>
+            <option value='Hero Motocorp Ltd'>
+            <option value='Hindalco Industries Ltd'>
+            <option value='Hindustan Unilever Ltd'>
+            <option value='ICICI Bank Ltd'>
+            <option value='ITC Ltd'>
+            <option value='Indusind Bank Ltd'>
+            <option value='Infosys Ltd'>
+            <option value='JSW Steel Limited'>
+            <option value='Kotak Mahindra Bank Ltd Fully Paid Ord. Shrs'>
+            <option value='LTIMindtree Ltd'>
+            <option value='Larsen and Toubro Ltd'>
+            <option value='Maruti Suzuki India Ltd'>
+            <option value='NTPC Ltd'>
+            <option value='Nestle India Limited'>
+            <option value='Oil and Natural Gas Corporation Ltd'>
+            <option value='Power Grid Corporation of India Ltd'>
+            <option value='Reliance Industries Ltd'>
+            <option value='Sbi Life Insurance Company Ltd'>
+            <option value='State Bank of India'>
+            <option value='Sun Pharmaceutical Industries Ltd'>
+            <option value='Tata Consultancy Services Ltd'>
+            <option value='Tata Consumer Products Ltd'>
+            <option value='Tata Motors Ltd Fully Paid Ord. Shrs'>
+            <option value='Tata Steel Ltd'>
+            <option value='Tech Mahindra Ltd'>
+            <option value='Titan Company Ltd'>
+            <option value='UPL Ltd'>
+            <option value='UltraTech Cement Ltd'>
+            <option value='Wipro Ltd'>            
         </datalist>
         <br/>
         <br/>
@@ -532,15 +531,7 @@
         <br/>
     </div>
     <script>
-        // Get the input element
         var inputElement = document.getElementById("selectTable");
-
-        // // Add event listener for 'input' event (user clicks on an option)
-        // inputElement.addEventListener("input", function() {
-        //     redirectToSelectedStock();
-        // });
-
-        // Add event listener for 'keydown' event (user presses Enter key)
         inputElement.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
                 redirectToSelectedStock();
@@ -577,9 +568,7 @@
                     console.error('Error updating data:', error);
                 })
         }
-
-        // Update data every 1 seconds (adjust the interval as needed)
-        setInterval(updateData, 1000);
+        setInterval(updateData, 3000);
         updateData();
     </script>
     

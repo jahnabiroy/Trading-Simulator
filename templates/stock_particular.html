@@ -102,7 +102,6 @@
         <br/>
         <br/>
         <div style="padding-left: 250px;">
-            <!-- <button style="text-align: center;"> CURRENT </button> -->
             <button style="text-align: center; color: white; background-color: rgb(0, 0, 0);" onclick="toggleHistoricalData()"> GET HISTORICAL DATA </button>
         </div>
         <br/>
@@ -141,6 +140,7 @@
         const username = "{{ username }}";
         update_balance();
         async function update_balance() {
+            /// reads the balance from the user.db and renders it
             const response = await fetch('/get_balance');
             const data = await response.json();
             if (data) {
@@ -153,6 +153,7 @@
     </script>
     <script>
         async function BUY(){
+            /// checks if enough balance in account and updates the balance and calls update balance
             update_balance();
             const quantity = document.getElementById("user_input").value;
             const price = "{{price}}";
@@ -177,6 +178,7 @@
     </script>
     <script>
         async function SELL(){
+            /// checks if enough stock in account and updates the balance and calls update balance
             update_balance();
             const quantity = document.getElementById("user_input").value;
             const price = "{{price}}";
@@ -208,7 +210,6 @@
                 const startDate = document.getElementById('startDate').value;
                 const endDate = document.getElementById('endDate').value;
                 const stock = '{{stock_name}}';
-                console.log(stock);
                 const response = await fetch(`/query?stock=${stock}&startDate=${startDate}&endDate=${endDate}&stock=${stock}`,{
                     method: 'POST',  // Use the POST method
                     headers: {
@@ -223,7 +224,6 @@
         
                 const data = await response.json();
         
-                ///console.log(data);
         
                 let dates  =[];
                 let prices =[];
@@ -232,8 +232,6 @@
                     dates.push(entry[0]);
                     prices.push(entry[1]);
                 }
-                console.log(dates)
-                console.log(prices)
                 const ctx = document.getElementById('chartContainer').getContext('2d');
                 const existingChart = Chart.getChart(ctx);
                 if (existingChart) {
