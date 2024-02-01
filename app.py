@@ -232,17 +232,6 @@ def default_filter():
         conn.close()
     # print(result)
     return jsonify(result)
-        
-@app.route("/get_quantity")
-def stock_quantity():
-    stock = request.args.get("stock")
-    user = session["username"]
-    file_path = f"instance/{user}.json"
-    with open(file_path, "r") as json_file:
-        data = json.load(json_file)
-
-    quantity = data.get(stock)
-    return [quantity]
 
 @app.route('/PE_filter',methods=['POST'])
 def PE_filter():
