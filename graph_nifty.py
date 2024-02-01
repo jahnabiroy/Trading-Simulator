@@ -4,6 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from bs4 import BeautifulSoup
 
 
 def main(ticker, exchange):
@@ -23,5 +24,10 @@ def main(ticker, exchange):
         EC.presence_of_element_located((By.CSS_SELECTOR, ".ushogf svg"))
     )
     svg_outer_html = svg_element.get_attribute("outerHTML")
+    soup = BeautifulSoup(svg_outer_html, "html.parser")
+    path_elements = soup.find_all("g", {"mask": True})
+    for path_element in path_elements:
+        del path_element["mask"]
+    final = str(soup)
     driver.quit()
-    return svg_outer_html
+    return final
