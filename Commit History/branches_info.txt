@@ -1,0 +1,6 @@
+* main
+  remotes/origin/Combined
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/frontend
+  remotes/origin/main
+  remotes/origin/sql_queries

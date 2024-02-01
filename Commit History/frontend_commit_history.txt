@@ -1,0 +1,83 @@
+commit 8875dd477a1161f91bcce60f654ec419bfcab0a6
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Thu Feb 1 21:41:56 2024 +0530
+
+    final change
+
+commit b2f497219b4c74d436383abd4388b8b07876fbcb
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Thu Feb 1 20:06:13 2024 +0530
+
+    final
+
+commit eace36351828d0de4cd12e9809d360ace79bf65f
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Thu Feb 1 10:31:02 2024 +0530
+
+    changes
+
+commit 99c38e8995706692fc29abda3be7ed73476fc5b7
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Thu Feb 1 02:13:07 2024 +0530
+
+    footer
+
+commit 53d80764bf6313ef45823530ab70c127763d8505
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Thu Feb 1 01:43:31 2024 +0530
+
+    animations
+
+commit e42b48d2f0e47b102859a2ea17074594c1a757f1
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Wed Jan 31 20:24:24 2024 +0530
+
+    final beautification
+
+commit 56370b938de43296b8bd7d0718dc787cdedaa409
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Wed Jan 31 11:24:19 2024 +0530
+
+    changes
+
+commit 780c0640e2acfa911522cec58b9c96d9df987e13
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Sun Jan 28 23:03:57 2024 +0530
+
+    beauty
+
+commit 3f1972140b54097a3b028fd4c8acf07de0a2020e
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Sun Jan 28 12:57:56 2024 +0530
+
+    changes
+
+commit e4ae10c2d7ae0545fa7d700e4133e033d8d037d1
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Sat Jan 27 15:28:51 2024 +0530
+
+    allstocks
+
+commit 2f92df735c73e7e84d019934319658abbc70bd67
+Author: Jahnabi Roy <jahnabi.royiitd@gmail.com>
+Date:   Sat Jan 27 13:33:29 2024 +0530
+
+    frontend
+
+commit 5211b6c2398016c86d6b3586286371ef86a70bf0
+Author: Jahnabi Roy <jahnabiroy11a@gmail.com>
+Date:   Sat Jan 27 13:19:21 2024 +0530
+
+    frontend
+
+commit 8d68d540f07454d2058ec201cefe6f7c4cca601a
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Mon Jan 22 13:56:14 2024 +0530
+
+    Added Git Ignore. Updated requirements.txt
+
+commit 3c5af9260ad47e11c444bc9840e4f1281c7183b8
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Sun Jan 21 19:45:20 2024 +0530
+
+    Initial_Update

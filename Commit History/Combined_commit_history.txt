@@ -1,0 +1,83 @@
+commit b9416ecbd36843e580050b7d44377a9805ba7d63
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 22:02:40 2024 +0530
+
+    Added .gitignore, handled login and register errors
+
+commit 21a1297ccd06d94e53ef9a6407be1c55720adb9b
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 20:22:43 2024 +0530
+
+    Final Change
+
+commit 4646031a067e9210f71220f9f19d8717d3376ca6
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 19:20:25 2024 +0530
+
+    Changed Font Color and background
+
+commit e251562bd8799091c59c0cda4fb9f125772ea088
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 10:50:04 2024 +0530
+
+    adjusted footer
+
+commit 121386b0e20e381594e18c66048a3b66c9729b70
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 10:48:48 2024 +0530
+
+    .
+
+commit 1adb619de0ade849bbdc9ab331b92483a60145b1
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 10:48:00 2024 +0530
+
+    Real Time graph update
+
+commit 5761366e757a19b9186ae7802679c956d02d30e2
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 09:47:36 2024 +0530
+
+    demo
+
+commit 0c1113d242c0c45fb7ea7d665c9a88baed394905
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 09:35:29 2024 +0530
+
+    .
+
+commit 55bde872bf333aea179e8e3c0e10c2fbfc6d6d82
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Thu Feb 1 09:33:29 2024 +0530
+
+    Final Update. Implemented changes from other branches. Added Report
+
+commit aec3ff83b1191d2b1495b6f2842f9f9f004decf5
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Wed Jan 31 19:23:56 2024 +0530
+
+    .
+
+commit e25be76dadb13f344fb2024f93862d4886a0ff03
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Wed Jan 31 19:23:16 2024 +0530
+
+    Added CSS style
+
+commit e88f8b5bf9e4b94a02d455ddb33ed9efbdfae3c6
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Wed Jan 31 11:54:25 2024 +0530
+
+    Initial Commit
+
+commit 8d68d540f07454d2058ec201cefe6f7c4cca601a
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Mon Jan 22 13:56:14 2024 +0530
+
+    Added Git Ignore. Updated requirements.txt
+
+commit 3c5af9260ad47e11c444bc9840e4f1281c7183b8
+Author: 33Arsenic75 <122697564+33Arsenic75@users.noreply.github.com>
+Date:   Sun Jan 21 19:45:20 2024 +0530
+
+    Initial_Update

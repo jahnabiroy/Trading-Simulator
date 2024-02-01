@@ -28,11 +28,30 @@ Upon running the command, the Flask server will start, and the application shoul
 
 ## Screenshots
 
+### Welcome
+![Welcome](Screenshot/welcome.png)
+
 ### Registration Page
-![Registration Page](Screenshot/Registration.png)
+![Registration Page](Screenshot/register.png)
 
 ### Login Page
-![Login Page](Screenshot/Login.png)
+![Login Page](Screenshot/login.png)
 
 ### Dashboard
-![Dashboard](Screenshot/Dashboard.png)
+![Dashboard](Screenshot/dashboard.png)
+
+### Stock List
+![Stock List](Screenshot/stock_list.png)
+
+### Particular Stocks
+![Particular Stocks](Screenshot/stock_particular_1.png)
+![Particular Stocks](Screenshot/stock_particular_2.png)
+
+### Compare Stocks
+![Compare Stocks](Screenshot/compare_stocks.png)
+
+### Filter Stocks
+![Profile](Screenshot/filter_stocks.png)
+
+### Profile
+![Profile](Screenshot/profile.png)
