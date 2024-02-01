@@ -1,0 +1,290 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: white;
+    transition: background-color 0.5s ease;
+}
+.navbar {
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+}
+
+@keyframes typing {
+    0% { width: 0; opacity: 0; }
+    20% { opacity: 1; }
+    100% { width: 100%; opacity: 1;}
+}
+
+@keyframes compress {
+    0% { height: 0%; opacity: 0; }
+    20% { height:10%;  opacity: 1; }
+    100% {height: 100%; opacity: 1;}
+}
+
+.typewriter-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: .15em solid orange; /* The typewriter cursor */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    display: inline-block;
+    animation: typing 4s steps(40, end);
+    animation-fill-mode: forwards;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(10); /* Start with a large scale */
+    }
+    100% {
+        transform: scale(1); /* Settle to the original scale */
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.65;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.footer {
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+    width: 100%;
+    padding: 0.75rem;
+}
+
+.navbar h1 {
+    text-align: left;
+    margin: 0; /* Remove margin */
+    padding-left: 2px;
+    padding-top: 2px; /* Remove padding */
+    color: black;
+}
+
+button, .navbtn, .nav1btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block
+}
+
+.btn-about {
+    background-color: #00a9a9;
+    color: #fff;
+    font-size: large;
+}
+
+.btn-login {
+    background-color: #22a5c2;
+    color: #fff;
+    font-size: large;
+}
+
+.btn-logout {
+    background-color: red;
+    color: #fff;
+    font-size: large;
+}
+
+.navbtn:hover {
+    opacity: 2;
+}
+
+.navbtn + .navbtn {
+    margin-left: -450px;
+}
+
+.nav1btn + .nav1btn {
+    margin-left: -610px;
+}
+
+.dark-mode {
+    background-color: #333; /* Dark mode background color */
+    color: #fff; /* Dark mode text color */
+}
+
+.dark-mode-navbar {
+    background-color: #444; /* Dark mode navbar background color */
+}
+
+.dark-mode-navbar h1 {
+    color: #fff;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadein {
+    animation: fadeIn 2s ease-in-out;
+}
+
+.slideleft {
+    animation: slideInFromLeft 2s ease-in-out;
+}
+
+.slideright {
+    animation: slideInFromRight 2s ease-in-out;
+}
+
+.start-area {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    color: white;
+}
+
+.features {
+    display: flex;
+    width: 100%;
+    padding: 3.75rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.stocks-area {
+    width: 100%;
+    padding-top: 1.75rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    box-sizing: border-box;
+}
+
+.outline-btn {
+    background-color: white;
+    border: 2px solid #f3e9e9;
+    color: black;
+    width: 300px;
+}
+
+.outline-btn:hover {
+    background-color: #f2ab68;
+    color: white;
+    border: 2px solid #fff;
+}
+
+.dark-mode .outline-btn {
+    border-color: #fff; /* Change border color to white in dark mode */
+    color: #fff; /* Change text color to white in dark mode */
+}
+
+.dark-mode .outline-btn:hover {
+    background-color: #f8f8f8; /* Change background color to white on hover in dark mode */
+    color: #000; /* Change text color to black on hover in dark mode */
+}
+
+#selectTable {
+    padding: 7px;
+    border: 0.5px solid #d3d2d2;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 500px;
+    height: 30px;
+}
+
+
+.information {
+    width: 300px;
+    border: 1px solid rgb(241, 241, 241);
+    border-radius: 5px;
+    padding: 20px; 
+    box-shadow : 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.infotmat {
+    width: 200px;
+    border: 1px solid rgb(241, 241, 241);
+    border-radius: 5px;
+    padding: 10px; 
+}
+
+.info {
+    width: 800px;
+    border: 1px solid rgb(241, 241, 241);
+    border-radius: 5px;
+    padding: 10px; 
+}
+
+.profile-container {
+    padding: 40px;
+    border-radius: 10px;
+    background-color: white;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+    width: 700px;
+    height:300px;
+    margin: auto;
+    margin-top: 80px;
+    opacity: 0.95;
+}
+
+.profile {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0);
+    width: 250px;
+    height:270px;
+    padding: 20px;
+}
+
+.stocks {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0);
+    width: 365px;
+    height:270px;
+    padding: 20px;
+}

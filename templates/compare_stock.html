@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StockMarket</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_new.css') }}">
+</head>
+<body style="background-image: url(/static/start.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: rgba(255, 255, 255, 0.5);">
+    <div class="navbar" style="background-color: #033c79;">
+        <h1 style='color : white;'> StockMarket </h1>
+        <a href="/stocks_list" class="navbtn btn-about"> Explore Stocks</a>
+        <a href="/dashboard" class="navbtn btn-about"> Back to Dashboard </a>
+        <a href="/profile" class="navbtn btn-about"> Your Profile </a>
+        <a href="/filter" class="navbtn btn-about"> Filter Stocks </a>
+        <a href="/" class="navbtn btn-logout">Logout</a>
+    </div>
+    <div class="stocks-area">
+        <span class="typewriter-text" style="animation: typing 2s steps(40, end) 0s forwards; font-size: 3.5em; color:white; font-weight: 700;">COMPARE STOCKS</span>
+        <hr style="opacity: 0.25;"/>
+        <br/>
+        <input list="tables" id="selectTable" placeholder="Select stocks">
+        <datalist id="tables">
+            <option value='Adani Enterprises Ltd'>
+            <option value='Adani Ports and Special Economic Zone Ld'>
+            <option value='Apollo Hospitals Enterprise Limited'>
+            <option value='Asian Paints Ltd'>
+            <option value='Axis Bank Ltd'>
+            <option value='Bajaj Auto Ltd'>
+            <option value='Bajaj Finance Ltd'>
+            <option value='Bajaj Finserv Ltd'>
+            <option value='Bharat Petroleum Corporation Ltd'>
+            <option value='Bharti Airtel Ltd'>
+            <option value='Britannia Industries Ltd'>
+            <option value='Cipla Ltd'>
+            <option value='Coal India Ltd'>
+            <option value="Divi's Laboratories Ltd">
+            <option value="Dr Reddy's Laboratories Ltd">
+            <option value='Eicher Motors Ltd'>
+            <option value='Grasim Industries Ltd'>
+            <option value='HCL Technologies Ltd'>
+            <option value='HDFC Bank Ltd'>
+            <option value='HDFC Life Insurance Company Ltd'>
+            <option value='Hero Motocorp Ltd'>
+            <option value='Hindalco Industries Ltd'>
+            <option value='Hindustan Unilever Ltd'>
+            <option value='ICICI Bank Ltd'>
+            <option value='ITC Ltd'>
+            <option value='Indusind Bank Ltd'>
+            <option value='Infosys Ltd'>
+            <option value='JSW Steel Limited'>
+            <option value='Kotak Mahindra Bank Ltd Fully Paid Ord. Shrs'>
+            <option value='LTIMindtree Ltd'>
+            <option value='Larsen and Toubro Ltd'>
+            <option value='Maruti Suzuki India Ltd'>
+            <option value='NTPC Ltd'>
+            <option value='Nestle India Limited'>
+            <option value='Oil and Natural Gas Corporation Ltd'>
+            <option value='Power Grid Corporation of India Ltd'>
+            <option value='Reliance Industries Ltd'>
+            <option value='Sbi Life Insurance Company Ltd'>
+            <option value='State Bank of India'>
+            <option value='Sun Pharmaceutical Industries Ltd'>
+            <option value='Tata Consultancy Services Ltd'>
+            <option value='Tata Consumer Products Ltd'>
+            <option value='Tata Motors Ltd Fully Paid Ord. Shrs'>
+            <option value='Tata Steel Ltd'>
+            <option value='Tech Mahindra Ltd'>
+            <option value='Titan Company Ltd'>
+            <option value='UPL Ltd'>
+            <option value='UltraTech Cement Ltd'>
+            <option value='Wipro Ltd'>
+        </datalist>
+        <br/>
+        <br/>
+        <label for="startDate" style='color: black; font-size: 1.15em; background-color: orange; font-weight: 600; padding: 5px; padding-left: 7px; padding-right: 7px; border-radius: 5px;'>START DATE</label>
+        <input style='padding: 7px; border-radius: 5px;' type="date" id="startDate" required>
+        <label for="endDate" style='margin-left: 40px; color: black; font-size: 1.15em; font-weight: 600;  background-color: orange; padding: 5px; padding-left: 7px; padding-right: 7px; border-radius: 5px;'>END DATE</label>
+        <input style='padding: 7px; border-radius: 5px;' type="date" id="endDate" required>
+        <br/>
+        <br/>
+        <div style="padding-bottom: 20px;">
+            <button onclick="addStock()" style="background-color: rgb(10, 170, 170); color: white;" >ADD</button>
+            <button onclick="resetSelection()">RESET</button>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div style="padding-left: 50px; width: 800px; height: 650px;">
+        <canvas id="chartContainer"></canvas>
+    </div>
+    <div class="footer" style="background-color: #033c79;">
+        <span></span>
+        <span style="color: white; text-align: right; font-weight: 700; font-family: 'Courier New', Courier, monospace; padding-right: 20px;">Created by Jahnabi Roy and Abhinav Rajesh Shripad.</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+
+    <script>
+        /// Adds a particular stock to the graph 
+        async function addStock() {
+                var stock = document.getElementById("selectTable").value;
+                var startDate = document.getElementById("startDate").value;
+                var endDate = document.getElementById("endDate").value;
+                const response = await fetch(`/query?stock=${stock}&startDate=${startDate}&endDate=${endDate}&stock=${stock}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ startDate, endDate, stock })
+                });
+            
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+            
+                const data = await response.json();
+            
+                let dates = [];
+                let prices = [];
+                for (let entry of data) {
+                    dates.push(entry[0]);
+                    prices.push(entry[1]);
+                }
+            
+                const ctx = document.getElementById('chartContainer').getContext('2d');
+                const existingChart = Chart.getChart(ctx);
+                document.getElementById("selectTable").value = "";
+                if (!existingChart) {
+                    // If chart doesn't exist, create a new one
+                    const myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: dates,
+                            datasets: [{
+                                label: stock,
+                                data: prices,
+                                borderColor: 'rgb(75, 192, 192)',
+                                borderWidth: 2,
+                                fill: false,
+                                pointStyle: 'none',
+                                pointRadius: 0,
+                            }],
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    type: 'time',
+                                    time: {
+                                        unit: 'day',
+                                        displayFormat: {
+                                            day: 'MMM D, YYYY'
+                                        }
+                                    },
+                                    ticks: {
+                                        color: 'white', // Set x-axis ticks color to white
+                                    },
+                                },
+                                y: {
+                                    beginAtZero: false,
+                                    ticks: {
+                                        color: 'white', // Set y-axis ticks color to white
+                                    },
+                                },
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: 'white', // Set legend label text color to white
+                                    },
+                                },
+                            },
+                        },
+                    });
+                } else {
+                    // if chart already exist
+                    existingChart.data.datasets.push({
+                        label: stock,
+                        data: prices,
+                        borderColor: getRandomColor(),
+                        borderWidth: 2,
+                        fill: false,
+                        pointStyle: 'none',
+                        pointRadius: 0,
+                    });
+                    existingChart.update(); // Update the existing chart to reflect changes
+                }
+            }
+
+            function resetSelection() {
+                document.getElementById("selectTable").value = "";
+                console.log("Resetting selection");
+                const ctx = document.getElementById('chartContainer').getContext('2d');
+                const existingChart = Chart.getChart(ctx);
+                if (existingChart) {
+                    existingChart.data.datasets = [];
+                    existingChart.update();
+                }
+                document.getElementById('startDate').value= '';
+                document.getElementById('endDate').value = '';
+
+            }
+            function getRandomColor() {
+                // Function to generate a random RGB color
+                var randomColor = 'rgb(' +
+                    Math.floor(Math.random() * 256) + ',' +
+                    Math.floor(Math.random() * 256) + ',' +
+                    Math.floor(Math.random() * 256) +
+                    ')';
+                return randomColor;
+            }
+    </script>
+</body>
+</html>
