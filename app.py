@@ -93,6 +93,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    error = None
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -105,7 +106,9 @@ def login():
             return redirect(url_for("dashboard"))
         else:
             flash("Invalid username or password")
-            return redirect(url_for("index"))
+            error = "Invalid username or password!"
+            # return redirect(url_for("index"))
+            return render_template("login.html", error=error)
     else:
         return render_template("login.html")
 
@@ -230,6 +233,16 @@ def default_filter():
     # print(result)
     return jsonify(result)
         
+@app.route("/get_quantity")
+def stock_quantity():
+    stock = request.args.get("stock")
+    user = session["username"]
+    file_path = f"instance/{user}.json"
+    with open(file_path, "r") as json_file:
+        data = json.load(json_file)
+
+    quantity = data.get(stock)
+    return [quantity]
 
 @app.route('/PE_filter',methods=['POST'])
 def PE_filter():
@@ -258,7 +271,8 @@ def BUY():
     # print(stock,user,type(price),type(quantity),type(balance),balance)
     print(user)
     if balance < quantity * price:
-        return "Not Enough Balance"
+        response_data = {"message": "Not Enough Balance", "stock_quantity": data[stock]}
+        return jsonify(response_data)
     else:
         query = f"UPDATE user SET balance = {balance} - {quantity*price} WHERE username = '{user}' "
         conn = sqlite3.connect(f"instance/users.db")
