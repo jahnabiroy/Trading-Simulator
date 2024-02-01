@@ -151,26 +151,29 @@ def get_balance():
         cursor.execute(query)
         result = cursor.fetchall()
         conn.close()
-        result = result[0][0]
+        result = round(result[0][0],3)
         return [result]
     else:
         return None
 
-
+gb_imp_do_not_change=0
 @app.route("/stock")
 def stock():
     if "user_id" in session:
         company_name, price, change, percentage_change, pe_ratio = real_time_price(
             "NIFTY_50", "INDEXNSE"
         )
+        gb_imp_do_not_change=percentage_change
         svg = main("NIFTY_50", "INDEXNSE")
         return render_template(
             "stock.html",
             username=session["username"],
             price=price,
-            prev=change,
+            change=change,
+            prev=round(price-change,3),
             percentage_change=percentage_change,
             svg=svg,
+            pe_ratio=pe_ratio,
             user_name=session["username"],
         )
     else:
@@ -260,7 +263,7 @@ def BUY():
     # print(stock,user,type(price),type(quantity),type(balance),balance)
     print(user)
     if balance < quantity * price:
-        response_data = {"message": "Not Enough Balance", "stock_quantity": data[stock]}
+        response_data = {"message": "Not Enough Balance"}
         return jsonify(response_data)
     else:
         query = f"UPDATE user SET balance = {balance} - {quantity*price} WHERE username = '{user}' "
@@ -331,11 +334,18 @@ def profit():
     temp = {}
     for row in yester_day_data:
         temp[row[0]] = [row[1], row[2]]
-
     df = pd.read_csv("stock_name.csv")
     for name, symbol in zip(df["Company Name"], df["Symbol"]):
-        if data[name] != 0:
+        if name == "Nifty_Fifty" and data[name]!=0:
             pr[name] = []
+            color = 'green' if gb_imp_do_not_change > 0 else 'red'
+            pr[name].append([gb_imp_do_not_change,color])
+            pr[name].append(data[name])
+        elif data[name] != 0:
+            # print(name)
+            pr[name] = []
+            # print(temp[symbol])
+            # print(data[name])
             pr[name].append(temp[symbol])
             pr[name].append(data[name])
     print(pr)
